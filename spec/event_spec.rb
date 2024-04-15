@@ -73,10 +73,25 @@ RSpec.describe Event do
             @event.add_food_truck(@food_truck1)  
             @event.add_food_truck(@food_truck2)   
             @event.add_food_truck(@food_truck3)
-            
+
             expected = ["Apple Pie (Slice)", "Banana Nice Cream", 'Peach Pie (Slice)', "Peach-Raspberry Nice Cream"]
 
             expect(@event.sorted_item_list).to eq(expected)
+        end
+    end
+
+    describe "#overstocked_items" do
+        it "returns a list of items that are overstocked" do
+            @event.add_food_truck(@food_truck1)  
+            @event.add_food_truck(@food_truck2)   
+            @event.add_food_truck(@food_truck3)
+
+            expect(@event.food_trucks_that_sell('Peach Pie (Slice)')).to eq([@food_truck1, @food_truck3])
+            
+            expect(@food_truck1.inventory[@item1]).to eq(35)
+            expect(@food_truck3.inventory[@item1]).to eq(65)
+
+            expect(@event.overstocked_items).to eq([@item1])
         end
     end
 end
