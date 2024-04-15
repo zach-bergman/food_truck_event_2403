@@ -67,4 +67,12 @@ RSpec.describe Event do
             expect(@event.food_trucks_that_sell("Banana Nice Cream")).to eq([@food_truck2])
         end
     end
+
+    describe "#sorted_item_list" do
+        it "returns an alphabetical list of all item names that are sold by food trucks" do
+            expected = ["Apple Pie (Slice)", "Banana Nice Cream", 'Peach Pie (Slice)', "Peach-Raspberry Nice Cream"]
+            
+            expect(@event.sorted_item_list).to eq(expected)
+        end
+    end
 end
