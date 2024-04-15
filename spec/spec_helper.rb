@@ -10,3 +10,4 @@ require 'pry'
 
 require "./lib/item"
 require "./lib/food_truck"
+require "./lib/event"
