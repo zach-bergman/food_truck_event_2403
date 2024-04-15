@@ -29,4 +29,28 @@ class Event
             end
         end.uniq.sort
     end
+
+    # def overstocked_items
+    #     item_amount = @food_trucks.map do |food_truck|
+    #         food_truck.inventory.map do |item|
+    #             require 'pry';binding.pry
+    #             sum += amount
+    #         end
+    #     end
+    #     require 'pry';binding.pry
+    #     food_truck_count = @food_trucks.map do |food_truck|
+    #         food_truck.inventory.reduce(0) do |sum, (item, amount)|
+    #             sum = food_trucks_that_sell(item.name).count
+    #         end
+    #     end
+
+    #     result = @food_trucks.map do |food_truck|
+    #         food_truck.inventory.map.with_index do |(item, amount), i|
+    #             if  food_truck_count[i] > 1 && item_amount[i] > 50
+    #                 return item
+    #             end
+    #         end
+    #     end
+    #     result
+    # end
 end
