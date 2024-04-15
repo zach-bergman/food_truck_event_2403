@@ -82,6 +82,10 @@ RSpec.describe Event do
 
     describe "#total_inventory" do
         it "returns a Hash with details on each item" do
+            @event.add_food_truck(@food_truck1)  
+            @event.add_food_truck(@food_truck2)   
+            @event.add_food_truck(@food_truck3)
+
             expected = {
                 @item1 => {
                     quantity: 100,
@@ -95,6 +99,11 @@ RSpec.describe Event do
 
                 @item3 => {
                     quantity: 25,
+                    food_trucks: [@food_truck2]
+                },
+
+                @item4 => {
+                    quantity: 50,
                     food_trucks: [@food_truck2]
                 }
             }
