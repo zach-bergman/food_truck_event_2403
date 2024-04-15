@@ -80,7 +80,28 @@ RSpec.describe Event do
         end
     end
 
+    describe "#total_inventory" do
+        it "returns a Hash with details on each item" do
+            expected = {
+                @item1 => {
+                    quantity: 100,
+                    food_trucks: [@food_truck1, @food_truck3]
+                },
 
+                @item2 => {
+                    quantity: 7,
+                    food_trucks: [@food_truck1]
+                },
+
+                @item3 => {
+                    quantity: 25,
+                    food_trucks: [@food_truck2]
+                }
+            }
+
+            expect(@event.total_inventory).to eq(expected)
+        end
+    end
 
     # describe "#overstocked_items" do
     #     it "returns a list of items that are overstocked" do
