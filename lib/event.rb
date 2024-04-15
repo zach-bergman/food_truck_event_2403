@@ -30,13 +30,27 @@ class Event
         end.uniq.sort
     end
 
+    def total_inventory
+        inventory_hash = {}
+
+        @food_trucks.each.with_index do |food_truck, i|
+            food_truck.inventory.each do |item, amount|
+                inventory_hash[item] = {
+                    quantity: food_truck.check_stock(item), #how to add item1 quantity to item1 quantity for both food trucks?!
+                    food_trucks: food_trucks_that_sell(item.name)
+                }
+            end
+        end
+        inventory_hash
+    end
+
     # def overstocked_items
-    #     item_amount = @food_trucks.map do |food_truck|
-    #         food_truck.inventory.map do |item|
-    #             require 'pry';binding.pry
-    #             sum += amount
-    #         end
-    #     end
+        # item_amount = @food_trucks.map do |food_truck|
+        #     food_truck.inventory.map do |item|
+        #         require 'pry';binding.pry
+        #         sum += amount
+        #     end
+        # end
     #     require 'pry';binding.pry
     #     food_truck_count = @food_trucks.map do |food_truck|
     #         food_truck.inventory.reduce(0) do |sum, (item, amount)|
