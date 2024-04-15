@@ -67,4 +67,63 @@ RSpec.describe Event do
             expect(@event.food_trucks_that_sell("Banana Nice Cream")).to eq([@food_truck2])
         end
     end
+
+    describe "#sorted_item_list" do
+        it "returns an alphabetical list of all item names that are sold by food trucks" do
+            @event.add_food_truck(@food_truck1)  
+            @event.add_food_truck(@food_truck2)   
+            @event.add_food_truck(@food_truck3)
+
+            expected = ["Apple Pie (Slice)", "Banana Nice Cream", 'Peach Pie (Slice)', "Peach-Raspberry Nice Cream"]
+
+            expect(@event.sorted_item_list).to eq(expected)
+        end
+    end
+
+    describe "#total_inventory" do
+        it "returns a Hash with details on each item" do
+            @event.add_food_truck(@food_truck1)  
+            @event.add_food_truck(@food_truck2)   
+            @event.add_food_truck(@food_truck3)
+
+            expected = {
+                @item1 => {
+                    quantity: 100,
+                    food_trucks: [@food_truck1, @food_truck3]
+                },
+
+                @item2 => {
+                    quantity: 7,
+                    food_trucks: [@food_truck1]
+                },
+
+                @item3 => {
+                    quantity: 25,
+                    food_trucks: [@food_truck2]
+                },
+
+                @item4 => {
+                    quantity: 50,
+                    food_trucks: [@food_truck2]
+                }
+            }
+
+            expect(@event.total_inventory).to eq(expected)
+        end
+    end
+
+    # describe "#overstocked_items" do
+    #     it "returns a list of items that are overstocked" do
+    #         @event.add_food_truck(@food_truck1)  
+    #         @event.add_food_truck(@food_truck2)   
+    #         @event.add_food_truck(@food_truck3)
+
+    #         expect(@event.food_trucks_that_sell('Peach Pie (Slice)')).to eq([@food_truck1, @food_truck3])
+
+    #         expect(@food_truck1.inventory[@item1]).to eq(35)
+    #         expect(@food_truck3.inventory[@item1]).to eq(65)
+
+    #         expect(@event.overstocked_items).to eq([@item1])
+    #     end
+    # end
 end
