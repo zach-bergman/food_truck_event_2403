@@ -21,4 +21,12 @@ class Event
             end
         end
     end
+
+    def sorted_item_list
+        @food_trucks.flat_map do |food_truck|
+            food_truck.inventory.map do |item, amount|
+                item.name
+            end
+        end.uniq.sort
+    end
 end
